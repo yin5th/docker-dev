@@ -15,7 +15,7 @@ nginx:
 golang:
   image: golang:latest
   container_name: golang
-  command: apt-get update && apt-get install -y vim
+  # command: apt-get update && apt-get install -y vim
   ports:
     - "9090:9090"
   links:
