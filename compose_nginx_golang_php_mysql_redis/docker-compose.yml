@@ -24,6 +24,7 @@ golang:
   volumes:
     - $HOME/code/go:/go
   tty: true
+
 # php-fpm
 fpm:
   image: registry.cn-shenzhen.aliyuncs.com/yxw-docker/php
@@ -59,4 +60,11 @@ redis:
   volumes:
     - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
   ports:
-      - "6379:6379"
+    - "6379:6379"
+phpmyadmin:
+  image: "phpmyadmin/phpmyadmin"
+  container_name: "phpmyadmin"
+  ports:
+   - "9191:80"
+  environment:
+   - PMA_ARBITRARY=1 
