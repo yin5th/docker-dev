@@ -24,7 +24,6 @@ golang:
   volumes:
     - $HOME/code/go:/go
   tty: true
-
 # php-fpm
 fpm:
   image: registry.cn-shenzhen.aliyuncs.com/yxw-docker/php
