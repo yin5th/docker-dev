@@ -47,9 +47,9 @@ mysql:
   container_name: mysql
   ports:
     - "3306:3306"
-  volumes:
-    - $HOME/code/data/mysql:/var/lib/mysql
-    - ./my.cnf:/etc/mysql/conf.d/my.cnf
+ #volumes:
+   #- $HOME/code/data/mysql:/var/lib/mysql
+   #- ./my.cnf:/etc/mysql/conf.d/my.cnf
   environment:
     - MYSQL_ROOT_PASSWORD=123456789
 
