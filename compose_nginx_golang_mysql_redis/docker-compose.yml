@@ -1,0 +1,44 @@
+version: "3"
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "8080:8080"  
+    volumes:
+      - $HOME/code:/source
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d/:/etc/nginx/conf.d/:ro
+  golang:
+    image: golang:latest
+    container_name: golang
+    ports:
+      - "9090:9090"
+    links:
+      - "mysql"
+      - "redis"
+    volumes:
+      - $HOME/code/go:/go
+    tty: true
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    restart: always
+    ports:
+      - "3306:3306"
+        #volumes:
+            #- $HOME/code/data/mysql:/var/lib/mysql
+            #- ./my.cnf:/etc/mysql/conf.d/my.cnf
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456789
+    privileged: true    
+  redis:
+    image: redis:3
+    container_name: redis
+    command: redis-server /usr/local/etc/redis/redis.conf --requirepass 123456789
+    volumes:
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+    ports:
+      - "6379:6379"
