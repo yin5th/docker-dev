@@ -16,11 +16,14 @@ services:
     container_name: golang
     ports:
       - "9090:9090"
+      - "9191:9191"
+      - "9292:9292"
     links:
       - "mysql"
       - "redis"
     volumes:
       - $HOME/code/go:/go
+      - $HOME/code/data/goroot:/usr/local/go  
     tty: true
   mysql:
     image: mysql:5.7

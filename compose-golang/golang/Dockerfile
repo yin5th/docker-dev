@@ -5,3 +5,4 @@ RUN apt-get update && apt-get install -y vim
 WORKDIR $GOPATH/src
 
 EXPOSE 8088
+EXPOSE 9191
