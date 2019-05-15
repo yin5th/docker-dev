@@ -1,0 +1,32 @@
+version: '3'
+services:
+    nginx:
+        build: ./nginx/.
+        restart: always
+        volumes:
+            - /path/to/web:/var/www
+            - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro  
+        ports:
+            - "80:80"
+        links:
+            - php
+    mysql:
+        image: mysql:5.7
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: example
+        volumes:
+            - /path/to/save/data:/var/lib/mysql
+
+            
+    redis:
+        image: redis
+
+    php:
+        build: ./php/.
+        ports:
+            - "9000:9000"
+        link:
+            - mysql
+            - redis  
+
